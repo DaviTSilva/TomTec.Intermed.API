@@ -17,9 +17,16 @@ namespace TomTec.Intermed.API.Controllers.v1
     public class ProfilesController : Controller
     {
         private readonly IRepository<User> _userRepository;
-        public ProfilesController(IRepository<User> userRepository)
+        private readonly IRepository<Claim> _claimRepository;
+        private readonly IRepository<UserType> _userTypeRepository;
+        private readonly IRepository<Address> _adddressRepository;
+
+        public ProfilesController(IRepository<User> userRepository, IRepository<Claim> claimRepository, IRepository<UserType> userTypeRepository, IRepository<Address> adddressRepository) 
         {
             _userRepository = userRepository;
+            _claimRepository = claimRepository;
+            _userTypeRepository = userTypeRepository;
+            _adddressRepository = adddressRepository;
         }
 
         [AllowAnonymous]
@@ -115,10 +122,15 @@ namespace TomTec.Intermed.API.Controllers.v1
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateUser([FromBody] UserRegisterDto dto, int id)
+        public IActionResult UpdateUser([FromBody] UpdateProfileDto dto, int id)
         {
             User user = dto.ToModel();
             user.Id = id;
+            user.UsersClaims.ToList().ForEach(uc => uc.Claim = _claimRepository.Get(uc.ClaimId)) ;
+            user.UsersClaims.ToList().ForEach(uc => uc.UserId = id);
+            user.UserType = _userTypeRepository.Get(user.UserTypeId);
+            user.Address = _adddressRepository.Get(user.AddressId);
+
             _userRepository.Update(user);
 
             return Ok(new

@@ -64,7 +64,8 @@ namespace TomTec.Intermed.Data
 
         public void Update(T entity)
         {
-            _dbContext.Update(entity);
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Entry(entity).Property(x => x.CreationDate).IsModified = false;
             _dbContext.SaveChanges();
         }
 
