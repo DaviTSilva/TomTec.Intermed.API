@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TomTec.Intermed.API.DTOs
+namespace TomTec.Intermed.API.DTOs.v1
 {
     public class LoginDto
     {

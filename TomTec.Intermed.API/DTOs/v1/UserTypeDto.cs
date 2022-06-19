@@ -4,19 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using TomTec.Intermed.Models;
 
-namespace TomTec.Intermed.API.DTOs
+namespace TomTec.Intermed.API.DTOs.v1
 {
-    public class ClaimDto
+    public class UserTypeDto
     {
         public string Name { get; set; }
 
-        public Claim ToModel()
+        public UserType ToModel()
         {
-            return new Claim
+            return new UserType()
             {
                 Name = this.Name
             };
         }
     }
-
 }

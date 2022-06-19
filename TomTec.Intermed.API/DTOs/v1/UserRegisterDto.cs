@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using TomTec.Intermed.Lib.Utils;
 using TomTec.Intermed.Models;
 
-namespace TomTec.Intermed.API.DTOs
+namespace TomTec.Intermed.API.DTOs.v1
 {
-    public class UpdateProfileDto
+    public class UserRegisterDto
     {
-            
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -19,7 +18,15 @@ namespace TomTec.Intermed.API.DTOs
         public IEnumerable<int> ClaimsIds { get; set; }
         public DateTime BirthDate { get; set; }
         public string ProfilePictureURL { get; set; }
-        public int AddressId { get; set; }
+
+        //Address
+        public string Street { get; set; }
+        public string Number { get; set; }
+        public string AdditionalInformation { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string CountryName { get; set; }
 
 
         public User ToModel()
@@ -37,7 +44,17 @@ namespace TomTec.Intermed.API.DTOs
                 UserTypeId = this.UserTypeId,
                 BirthDate = this.BirthDate,
                 ProfilePictureURL = this.ProfilePictureURL,
-                AddressId = this.AddressId,
+                Address = new Address()
+                {
+                    Street = this.Street,
+                    Number = this.Number,
+                    AdditionalInformation = this.AdditionalInformation,
+                    PostalCode = this.PostalCode,
+                    City = this.City,
+                    State = this.State,
+                    CountryName = this.CountryName,
+                    CreationDate = DateTime.UtcNow,
+                },
             };
             user.UsersClaims = this.ClaimsIds.Select(id => new UsersClaims() { ClaimId = id, User = user }).ToList();
 

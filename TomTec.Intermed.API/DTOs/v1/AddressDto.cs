@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TomTec.Intermed.Models;
 
-namespace TomTec.Intermed.API.DTOs
+namespace TomTec.Intermed.API.DTOs.v1
 {
     public class AddressDto
     {

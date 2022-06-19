@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using TomTec.Intermed.Models;
 
-namespace TomTec.Intermed.API.Records
+namespace TomTec.Intermed.API.Records.v1
 {
     public class UserRegisterRecord
     {

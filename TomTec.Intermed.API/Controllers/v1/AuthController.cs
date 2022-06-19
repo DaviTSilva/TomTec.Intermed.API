@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TomTec.Intermed.API.DTOs;
+using TomTec.Intermed.API.DTOs.v1;
 using TomTec.Intermed.Data;
 using TomTec.Intermed.Lib.AspNetCore;
 using TomTec.Intermed.Lib.Utils;
 using TomTec.Intermed.Models;
 
-namespace TomTec.Intermed.API.Controllers
+namespace TomTec.Intermed.API.Controllers.v1
 {
     [Route("v1/auth")]
     [AllowAnonymous]
