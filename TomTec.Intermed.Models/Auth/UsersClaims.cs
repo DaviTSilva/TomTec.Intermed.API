@@ -16,6 +16,16 @@ namespace TomTec.Intermed.Models
         public int ClaimId { get; set; }
         public Claim Claim { get; set; }
 
+        public UsersClaims()
+        {
+        }
+
+        public UsersClaims(int userId, int claimId) 
+        {
+            UserId = userId;
+            ClaimId = claimId;
+        }
+
         public System.Security.Claims.Claim ToSecurityClaim()
         {
             return new System.Security.Claims.Claim(Claim.Name, UserId.ToString());

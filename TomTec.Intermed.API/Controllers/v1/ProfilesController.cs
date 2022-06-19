@@ -43,9 +43,7 @@ namespace TomTec.Intermed.API.Controllers.v1
         {
             try
             {
-                var users = _userRepository.Get(u => u.Address,
-                    u => u.UsersClaims,
-                    u => u.UserType);
+                var users = _userRepository.GetComplete();
                 return Ok(new
                 {
                     message = ResponseMessage.Success,
@@ -64,9 +62,7 @@ namespace TomTec.Intermed.API.Controllers.v1
         {
             try
             {
-                var user = _userRepository.Get(id, u => u.Address,
-                    u => u.UsersClaims,
-                    u => u.UserType);
+                var user = _userRepository.GetComplete(id);
                 return Ok(new
                 {
                     message = ResponseMessage.Success,
@@ -85,9 +81,7 @@ namespace TomTec.Intermed.API.Controllers.v1
         {
             try
             {
-                var user = _userRepository.Get(u => u.UserName.Equals(userName), u => u.Address,
-                    u => u.UsersClaims,
-                    u => u.UserType);
+                var user = _userRepository.GetCompleteUserByUserName(userName);
                 return Ok(new
                 {
                     message = ResponseMessage.Success,
@@ -106,9 +100,7 @@ namespace TomTec.Intermed.API.Controllers.v1
         {
             try
             {
-                var user = _userRepository.Get(u => u.Email.Equals(email), u => u.Address,
-                    u => u.UsersClaims,
-                    u => u.UserType);
+                var user = _userRepository.GetCompleteUserByEmail(email);
                 return Ok(new
                 {
                     message = ResponseMessage.Success,

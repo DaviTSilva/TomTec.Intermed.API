@@ -35,16 +35,16 @@ namespace TomTec.Intermed.Data
             modelBuilder.Entity<Claim>().HasIndex(r => r.Name).IsUnique();
             modelBuilder.Entity<UserType>().HasIndex(ut => ut.Name).IsUnique();
 
-            modelBuilder.Entity<UsersClaims>()
-                .HasKey(uc => new { uc.UserId, uc.ClaimId });
-                    modelBuilder.Entity<UsersClaims>()
-                        .HasOne(uc => uc.User)
-                        .WithMany(b => b.UsersClaims)
-                        .HasForeignKey(bc => bc.UserId);
-                    modelBuilder.Entity<UsersClaims>()
-                        .HasOne(bc => bc.Claim)
-                        .WithMany(c => c.UsersClaims)
-                        .HasForeignKey(bc => bc.ClaimId);
+            //modelBuilder.Entity<UsersClaims>()
+            //    .HasKey(uc => new { uc.UserId, uc.ClaimId });
+            //modelBuilder.Entity<UsersClaims>()
+            //    .HasOne(uc => uc.User)
+            //    .WithMany(b => b.UsersClaims)
+            //    .HasForeignKey(bc => bc.UserId);
+            //modelBuilder.Entity<UsersClaims>()
+            //    .HasOne(bc => bc.Claim)
+            //    .WithMany(c => c.UsersClaims)
+            //    .HasForeignKey(bc => bc.ClaimId);
         }
 
         public DbSet<User> Users { get; set; }

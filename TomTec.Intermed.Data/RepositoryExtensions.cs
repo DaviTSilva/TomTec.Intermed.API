@@ -8,84 +8,94 @@ using System.Linq.Expressions;
 
 namespace TomTec.Intermed.Data
 {
-    public static class DataExtensions
+    public static class RepositoryExtensions
     {
-        public static IEnumerable<User> GetCompleteUsers(this IntermedDBContext context)
+        public static IEnumerable<User> GetComplete(this IRepository<User> repository)
         {
-            return context.Users
+            return repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}");
         }
 
-        public static IEnumerable<User> GetCompleteUsers(this IntermedDBContext context, Func<User, bool> query)
+        public static IEnumerable<User> GetComplete(this IRepository<User> repository, Func<User, bool> query)
         {
-            return context.Users
+            return repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}")
                 .Where(query);
         }
 
-        public static User GetCompleteUserByEmail(this IntermedDBContext context, string email)
+        public static User GetCompleteUserByEmail(this IRepository<User> repository, string email)
         {
-            return context.Users
+            return repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}")
                 .FirstOrDefault(u => u.Email.Equals(email));
         }
 
-        public static User GetCompleteUserByUserName(this IntermedDBContext context, string userName)
+        public static User GetCompleteUserByUserName(this IRepository<User> repository, string userName)
         {
-            return context.Users
+            return repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}")
                 .FirstOrDefault(u => u.UserName.Equals(userName));
         }
 
-        public static User GetCompleteUserById(this IntermedDBContext context, int Id)
+        public static User GetComplete(this IRepository<User> repository, int Id)
         {
-            return context.Users
+            return repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}")
                 .FirstOrDefault(u => u.Id == Id);
         }
 
-        public static Claim GetCompleteUserClaim(this IntermedDBContext context, int Id)
+        public static Claim GetComplete(this IRepository<Claim> repository, int Id)
         {
-            return context.Claims
+            return repository.DBContext.Claims
                 .Include(nameof(Claim.UsersClaims))
                 .Include($"{nameof(Claim.UsersClaims)}.{nameof(UsersClaims.User)}")
                 .FirstOrDefault(ut => ut.Id == Id);
         }
 
-        public static IEnumerable<Claim> GetCompleteUserClaims(this IntermedDBContext context, Func<Claim, bool> query)
+        public static IEnumerable<Claim> GetComplete(this IRepository<Claim> repository, Func<Claim, bool> query)
         {
-            return context.Claims
+            return repository.DBContext.Claims
                 .Include(nameof(Claim.UsersClaims))
                 .Include($"{nameof(Claim.UsersClaims)}.{nameof(UsersClaims.User)}")
                 .Where(query);
         }
 
-        public static IEnumerable<Claim> GetCompleteUserClaims(this IntermedDBContext context)
+        public static IEnumerable<Claim> GetComplete(this IRepository<Claim> repository)
         {
-            return context.Claims
+            return repository.DBContext.Claims
                 .Include(nameof(Claim.UsersClaims))
                 .Include($"{nameof(Claim.UsersClaims)}.{nameof(UsersClaims.User)}");
         }
 
+        public static void SignUserToClaim(this IRepository<Claim> repository, int userId, int claimId)
+        {
+            var userClaim = new UsersClaims(userId, claimId);
+            repository.DBContext.UsersClaims.Add(userClaim);
+            repository.DBContext.SaveChanges();
+        }
+
+        public static void UnsignUserToClaim(this IRepository<Claim> repository, int userId, int claimId)
+        {
+            var userClaim = new UsersClaims(userId, claimId);
+            repository.DBContext.UsersClaims.Remove(userClaim);
+            repository.DBContext.SaveChanges();
+        }
 
         public static IQueryable<T> IncludeMultiple<T>(this IQueryable<T> query, params Expression<Func<T, object>>[] includes)
             where T : class
         {
             if (includes != null)
             {
-                //query = includes.Aggregate(query,
-                //          (current, include) => current.Include(include));
-
                 query = includes.Aggregate(query,
                           (current, include) => current.Include(include));
             }

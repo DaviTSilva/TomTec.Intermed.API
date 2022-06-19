@@ -8,6 +8,7 @@ namespace TomTec.Intermed.Data
 {
     public interface IRepository<T> where T : BaseEntity
     {
+        public IntermedDBContext DBContext { get; }
         T Create(T entity);
         public void Delete(int id);
         T Get(int id);

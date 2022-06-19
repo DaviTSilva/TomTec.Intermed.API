@@ -11,6 +11,7 @@ namespace TomTec.Intermed.Data
     public class SQLRepository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly IntermedDBContext _dbContext;
+        public IntermedDBContext DBContext { get { return _dbContext; } }
         public SQLRepository(IntermedDBContext userContext)
         {
             _dbContext = userContext;
@@ -21,7 +22,7 @@ namespace TomTec.Intermed.Data
         {
             entity.CreationDate = DateTime.UtcNow;
             _dbContext.Add(entity);
-            entity.Id = _dbContext.SaveChanges();
+            _dbContext.SaveChanges();
             return entity;
         }
 
