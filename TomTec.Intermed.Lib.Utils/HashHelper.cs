@@ -5,7 +5,7 @@ namespace TomTec.Intermed.Lib.Utils
 {
     static public class HashHelper
     {
-        static public string GeneratePasswordSalt()
+        static public string GenerateSalt()
         {
             int max_length = 22;
             var salt = new byte[max_length];

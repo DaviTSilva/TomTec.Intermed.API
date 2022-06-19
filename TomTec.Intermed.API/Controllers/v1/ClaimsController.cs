@@ -16,12 +16,10 @@ namespace TomTec.Intermed.API.Controllers.v1
     public class ClaimsController : Controller
     {
         private readonly IRepository<Claim> _claimsRepository;
-        private readonly IRepository<User> _userRepository;
 
-        public ClaimsController(IRepository<Claim> uerRoleRepository, IRepository<User> userRepository)
+        public ClaimsController(IRepository<Claim> uerRoleRepository)
         {
             _claimsRepository = uerRoleRepository;
-            _userRepository = userRepository;
         }
 
         [HttpPost("")]

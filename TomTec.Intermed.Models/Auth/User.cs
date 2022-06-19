@@ -41,6 +41,7 @@ namespace TomTec.Intermed.Models
 
         public ICollection<UsersClaims> UsersClaims { get; set; }
 
+        [Column(TypeName = "varchar(max)")]
         [Required]
         [JsonIgnore]
         public string Password { get; set; }

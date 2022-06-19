@@ -117,11 +117,7 @@ namespace TomTec.Intermed.API.Controllers.v1
         public IActionResult UpdateUser([FromBody] UpdateProfileDto dto, int id)
         {
             User user = dto.ToModel();
-            user.Id = id;
-            user.UsersClaims.ToList().ForEach(uc => uc.Claim = _claimRepository.Get(uc.ClaimId)) ;
-            user.UsersClaims.ToList().ForEach(uc => uc.UserId = id);
-            user.UserType = _userTypeRepository.Get(user.UserTypeId);
-            user.Address = _adddressRepository.Get(user.AddressId);
+            PopulateUser(id, user);
 
             _userRepository.Update(user);
 
@@ -129,6 +125,15 @@ namespace TomTec.Intermed.API.Controllers.v1
             {
                 message = ResponseMessage.Success,
             });
+        }
+
+        private void PopulateUser(int id, User user)
+        {
+            user.Id = id;
+            user.UsersClaims.ToList().ForEach(uc => uc.Claim = _claimRepository.Get(uc.ClaimId));
+            user.UsersClaims.ToList().ForEach(uc => uc.UserId = id);
+            user.UserType = _userTypeRepository.Get(user.UserTypeId);
+            user.Address = _adddressRepository.Get(user.AddressId);
         }
     }
 }

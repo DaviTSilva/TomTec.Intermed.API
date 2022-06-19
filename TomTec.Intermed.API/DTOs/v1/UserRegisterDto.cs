@@ -31,7 +31,7 @@ namespace TomTec.Intermed.API.DTOs.v1
 
         public User ToModel()
         {
-            string salt = HashHelper.GeneratePasswordSalt();
+            string salt = HashHelper.GenerateSalt();
             string password = BCrypt.Net.BCrypt.HashPassword(this.Password, salt);
             var user = new User()
             {
