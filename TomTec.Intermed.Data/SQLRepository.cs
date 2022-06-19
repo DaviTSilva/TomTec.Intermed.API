@@ -69,8 +69,5 @@ namespace TomTec.Intermed.Data
             _dbContext.Entry(entity).Property(x => x.CreationDate).IsModified = false;
             _dbContext.SaveChanges();
         }
-
-
-
     }
 }
