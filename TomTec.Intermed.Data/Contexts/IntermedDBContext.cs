@@ -43,10 +43,7 @@ namespace TomTec.Intermed.Data
             modelBuilder.Entity<UsersClaims>()
                 .HasOne(bc => bc.Claim)
                 .WithMany(c => c.UsersClaims)
-                .HasForeignKey(bc => bc.ClaimId);
-            modelBuilder.Entity<HealthProfessional>()
-                .HasMany(h => h.CreditCardInfo)
-                .WithOne(c => c.HealthProfessional);         
+                .HasForeignKey(bc => bc.ClaimId);       
         }
 
         public DbSet<User> Users { get; set; }

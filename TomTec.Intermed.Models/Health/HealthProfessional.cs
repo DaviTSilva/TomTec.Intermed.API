@@ -28,6 +28,8 @@ namespace TomTec.Intermed.Models
         [Required]
         public double Rate { get; set; }
 
-        public ICollection<CreditCardInfo> CreditCardInfo { get; set; }
+        public int CreditCardInfoId { get; set; }
+
+        public CreditCardInfo CreditCardInfo { get; set; }
     }
 }

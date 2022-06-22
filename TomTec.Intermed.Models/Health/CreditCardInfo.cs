@@ -6,10 +6,6 @@ namespace TomTec.Intermed.Models
 {
     public class CreditCardInfo : BaseEntity
     {
-        public int HealthProfessionalId { get; set; }
-
-        public HealthProfessional HealthProfessional { get; set; }
-
         [Column(TypeName = "varchar(200)")]
         public string Name { get; set; }
 
@@ -19,7 +15,7 @@ namespace TomTec.Intermed.Models
 
         [Column(TypeName = "datetime")]
         [Required]
-        public DateTime Expire { get; set; }
+        public string Expire { get; set; }
 
         [Column(TypeName = "varchar(200)")]
         [Required]
@@ -32,5 +28,9 @@ namespace TomTec.Intermed.Models
         [Column(TypeName = "varchar(200)")]
         [Required]
         public string Salt { get; set; }
+
+        [Column(TypeName = "varchar(4)")]
+        [Required]
+        public string FourLastNumbers { get; set; }
     }
 }

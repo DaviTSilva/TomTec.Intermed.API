@@ -3,19 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomTec.Intermed.API", "TomTec.Intermed.API\TomTec.Intermed.API.csproj", "{935C7FFC-48A5-48A2-B171-67059F40664C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomTec.Intermed.API", "TomTec.Intermed.API\TomTec.Intermed.API.csproj", "{935C7FFC-48A5-48A2-B171-67059F40664C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{75F3CF65-A1D6-449B-A05A-2AB9C2CA56FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{CEA29D07-824A-4DFD-AE1A-BE4D184BED3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomTec.Intermed.Models", "TomTec.Intermed.Models\TomTec.Intermed.Models.csproj", "{410C2766-3701-46C0-BC38-AF19D7CD114C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomTec.Intermed.Models", "TomTec.Intermed.Models\TomTec.Intermed.Models.csproj", "{410C2766-3701-46C0-BC38-AF19D7CD114C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomTec.Intermed.Lib.Utils", "TomTec.Intermed.Lib.Utils\TomTec.Intermed.Lib.Utils.csproj", "{4DDD40DA-CD4E-4C47-AF7C-0EF2AA3FC632}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomTec.Intermed.Lib.Utils", "TomTec.Intermed.Lib.Utils\TomTec.Intermed.Lib.Utils.csproj", "{4DDD40DA-CD4E-4C47-AF7C-0EF2AA3FC632}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomTec.Intermed.Data", "TomTec.Intermed.Data\TomTec.Intermed.Data.csproj", "{7B1DB5E8-596E-4B60-84DD-0FA0FB95138F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomTec.Intermed.Data", "TomTec.Intermed.Data\TomTec.Intermed.Data.csproj", "{7B1DB5E8-596E-4B60-84DD-0FA0FB95138F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomTec.Intermed.Lib.AspNetCore", "TomTec.Intermed.Lib.AspNetCore\TomTec.Intermed.Lib.AspNetCore.csproj", "{C89CBF31-066D-4437-AD1D-EDF110C08438}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TomTec.Intermed.Lib.AspNetCore", "TomTec.Intermed.Lib.AspNetCore\TomTec.Intermed.Lib.AspNetCore.csproj", "{C89CBF31-066D-4437-AD1D-EDF110C08438}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{2C886390-A5F5-4CF1-B3B1-27D0FD04A4F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomTec.Intermed.Business", "TomTec.Intermed.Business\TomTec.Intermed.Business.csproj", "{41FC7DA8-B0B4-4905-A9F4-EBC3D7C01AA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +47,10 @@ Global
 		{C89CBF31-066D-4437-AD1D-EDF110C08438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C89CBF31-066D-4437-AD1D-EDF110C08438}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C89CBF31-066D-4437-AD1D-EDF110C08438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41FC7DA8-B0B4-4905-A9F4-EBC3D7C01AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41FC7DA8-B0B4-4905-A9F4-EBC3D7C01AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41FC7DA8-B0B4-4905-A9F4-EBC3D7C01AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41FC7DA8-B0B4-4905-A9F4-EBC3D7C01AA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +60,7 @@ Global
 		{4DDD40DA-CD4E-4C47-AF7C-0EF2AA3FC632} = {CEA29D07-824A-4DFD-AE1A-BE4D184BED3A}
 		{7B1DB5E8-596E-4B60-84DD-0FA0FB95138F} = {75F3CF65-A1D6-449B-A05A-2AB9C2CA56FC}
 		{C89CBF31-066D-4437-AD1D-EDF110C08438} = {CEA29D07-824A-4DFD-AE1A-BE4D184BED3A}
+		{41FC7DA8-B0B4-4905-A9F4-EBC3D7C01AA4} = {2C886390-A5F5-4CF1-B3B1-27D0FD04A4F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC6C80AD-B38C-4707-9532-CB27D9B078D5}

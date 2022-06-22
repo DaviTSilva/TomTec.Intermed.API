@@ -91,6 +91,19 @@ namespace TomTec.Intermed.Data
             repository.DBContext.SaveChanges();
         }
 
+        public static void Cancell(this IRepository<Signature> repository, int id)
+        {
+            var signature = new Signature()
+            {
+                Id = id,
+                IsCancelled = true
+            };
+
+            repository.DBContext.Signatures.Attach(signature);
+            repository.DBContext.Entry(signature).Property(x => x.IsCancelled).IsModified = true;
+            repository.DBContext.SaveChanges();
+        }
+
         public static IQueryable<T> IncludeMultiple<T>(this IQueryable<T> query, params Expression<Func<T, object>>[] includes)
             where T : class
         {

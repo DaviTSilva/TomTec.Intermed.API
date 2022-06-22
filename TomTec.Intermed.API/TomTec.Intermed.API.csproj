@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TomTec.Intermed.Business\TomTec.Intermed.Business.csproj" />
     <ProjectReference Include="..\TomTec.Intermed.Data\TomTec.Intermed.Data.csproj" />
     <ProjectReference Include="..\TomTec.Intermed.Lib.AspNetCore\TomTec.Intermed.Lib.AspNetCore.csproj" />
     <ProjectReference Include="..\TomTec.Intermed.Lib.Utils\TomTec.Intermed.Lib.Utils.csproj" />
