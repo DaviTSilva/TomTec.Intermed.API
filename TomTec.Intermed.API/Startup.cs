@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TomTec.Intermed.Business;
 using TomTec.Intermed.Data;
 
 namespace TomTec.Intermed.API
@@ -36,6 +37,8 @@ namespace TomTec.Intermed.API
             );
 
             services.AddScoped(typeof(IRepository<>), typeof(SQLRepository<>));
+            services.AddScoped(typeof(ICreditCardInfoService), typeof(CreditCardInfoService));
+            services.AddScoped(typeof(ISignatureService), typeof(SignatureService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

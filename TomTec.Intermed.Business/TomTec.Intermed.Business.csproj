@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TomTec.Intermed.Data\TomTec.Intermed.Data.csproj" />
+    <ProjectReference Include="..\TomTec.Intermed.Lib.Utils\TomTec.Intermed.Lib.Utils.csproj" />
     <ProjectReference Include="..\TomTec.Intermed.Models\TomTec.Intermed.Models.csproj" />
   </ItemGroup>
 

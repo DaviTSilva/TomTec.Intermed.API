@@ -25,12 +25,8 @@ namespace TomTec.Intermed.Models
         [Required]
         public string CVV { get; set; }
 
-        [Column(TypeName = "varchar(200)")]
-        [Required]
-        public string Salt { get; set; }
-
         [Column(TypeName = "varchar(4)")]
         [Required]
-        public string FourLastNumbers { get; set; }
+        public string FourLastNumbers { get { return Number.Substring(Number.Length - 4); } }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TomTec.Intermed.Business;
 using TomTec.Intermed.Lib.Utils;
 using TomTec.Intermed.Models;
 
@@ -38,12 +39,6 @@ namespace TomTec.Intermed.API.DTOs.v1
 
         public HealthProfessional toModel()
         {
-            string salt = HashHelper.GenerateSalt();
-            string creditCardNumber = BCrypt.Net.BCrypt.HashPassword(this.CreditCardNumber, salt);
-            string creditCardExpire = BCrypt.Net.BCrypt.HashPassword(this.CreditCardExpire, salt);
-            string creditCardOwnerName = BCrypt.Net.BCrypt.HashPassword(this.CreditCardOwnerName, salt);
-            string creditCardCVV = BCrypt.Net.BCrypt.HashPassword(this.CreditCardCVV, salt);
-
             var model = new HealthProfessional()
             {
                 UserId = this.UserId,
@@ -72,16 +67,14 @@ namespace TomTec.Intermed.API.DTOs.v1
                 CreditCardInfo = new CreditCardInfo()
                 {
                     Name = CreditCardName,
-                    Number = creditCardNumber,
-                    Expire = creditCardExpire,
-                    OwnerName = creditCardOwnerName,
-                    CVV = creditCardCVV,
-                    Salt = salt,
-                    FourLastNumbers = CreditCardNumber.Substring(CreditCardNumber.Length - 4),
+                    Number = this.CreditCardNumber,
+                    Expire = this.CreditCardExpire,
+                    OwnerName = this.CreditCardOwnerName,
+                    CVV = CreditCardCVV,
                     CreationDate = DateTime.UtcNow,
                 },
             };
-
+            new CreditCardInfoService().Encrypt(model.CreditCardInfo);
             return model;
         }
     }
