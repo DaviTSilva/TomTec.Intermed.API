@@ -8,7 +8,7 @@ namespace TomTec.Intermed.Models
 {
     public class HealthProfessional : BaseEntity
     {
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public User User { get; set; }
 
         public int ServiceTypeId { get; set; }

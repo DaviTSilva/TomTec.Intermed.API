@@ -54,5 +54,8 @@ namespace TomTec.Intermed.Models
         [Required]
         public bool Active { get; set; } = true;
 
+        public int? HealthProfessionalId { get; set; }
+        public HealthProfessional HealthProfessional { get; set; }
+
     }
 }

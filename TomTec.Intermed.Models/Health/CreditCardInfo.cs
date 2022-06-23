@@ -13,7 +13,7 @@ namespace TomTec.Intermed.Models
         [Required]
         public string Number { get; set; }
 
-        [Column(TypeName = "datetime")]
+        [Column(TypeName = "varchar(200)")]
         [Required]
         public string Expire { get; set; }
 

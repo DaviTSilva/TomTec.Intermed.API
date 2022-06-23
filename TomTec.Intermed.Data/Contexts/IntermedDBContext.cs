@@ -27,6 +27,10 @@ namespace TomTec.Intermed.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes())
+            {
+
+            }
             modelBuilder.Entity<User>().HasIndex(u => new {
                 u.Email,
                 u.UserName,
@@ -43,7 +47,22 @@ namespace TomTec.Intermed.Data
             modelBuilder.Entity<UsersClaims>()
                 .HasOne(bc => bc.Claim)
                 .WithMany(c => c.UsersClaims)
-                .HasForeignKey(bc => bc.ClaimId);       
+                .HasForeignKey(bc => bc.ClaimId);
+
+            modelBuilder.Entity<HealthProfessional>()
+                .HasOne(u => u.User)
+                .WithOne( u => u.HealthProfessional)
+                .HasForeignKey<User>(h => h.HealthProfessionalId)
+                .OnDelete(DeleteBehavior.NoAction)
+                ;
+
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.HealthProfessional)
+                .WithOne(h => h.User)
+                .HasForeignKey<HealthProfessional>(u => u.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<User> Users { get; set; }
