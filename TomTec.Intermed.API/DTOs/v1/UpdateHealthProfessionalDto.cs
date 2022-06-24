@@ -24,6 +24,7 @@ namespace TomTec.Intermed.API.DTOs.v1
             {
                 UserId = this.UserId,
                 ServiceTypeId = this.ServiceTypeId,
+                SpecialtyId = this.SpecialtyId,
                 Description = this.Description,
                 ContactCardId = this.ContactCardId,
                 ConsultingAddressId = this.ConsultingAddressId,

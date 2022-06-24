@@ -14,6 +14,9 @@ namespace TomTec.Intermed.Models
         public int ServiceTypeId { get; set; }
         public ServiceType ServiceType { get; set; }
 
+        public int SpecialtyId { get; set; }
+        public Specialty Specialty { get; set; }
+
         [Column(TypeName = "varchar(max)")]
         [Required]
         public string Description { get; set; }

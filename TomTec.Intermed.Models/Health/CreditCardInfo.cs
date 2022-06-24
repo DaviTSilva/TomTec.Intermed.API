@@ -27,6 +27,6 @@ namespace TomTec.Intermed.Models
 
         [Column(TypeName = "varchar(4)")]
         [Required]
-        public string FourLastNumbers { get { return Number.Substring(Number.Length - 4); } }
+        public string FourLastNumbers { get; set; }
     }
 }

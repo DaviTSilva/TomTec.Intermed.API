@@ -43,6 +43,7 @@ namespace TomTec.Intermed.API.DTOs.v1
             {
                 UserId = this.UserId,
                 ServiceTypeId = this.ServiceTypeId,
+                SpecialtyId = this.SpecialtyId,
                 Description = this.Description,
                 ContactCard = new ContactCard()
                 {
@@ -70,7 +71,8 @@ namespace TomTec.Intermed.API.DTOs.v1
                     Number = this.CreditCardNumber,
                     Expire = this.CreditCardExpire,
                     OwnerName = this.CreditCardOwnerName,
-                    CVV = CreditCardCVV,
+                    CVV = this.CreditCardCVV,
+                    FourLastNumbers = this.CreditCardNumber.Substring(this.CreditCardNumber.Length - 4),
                     CreationDate = DateTime.UtcNow,
                 },
             };
