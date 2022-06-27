@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TomTec.Intermed.API.DTOs.v1;
 using TomTec.Intermed.Data;
 using TomTec.Intermed.Lib.AspNetCore;
+using TomTec.Intermed.Lib.AspNetCore.Filters;
 using TomTec.Intermed.Lib.Utils;
 using TomTec.Intermed.Models;
 
@@ -15,6 +16,9 @@ namespace TomTec.Intermed.API.Controllers.v1
 {
     [Route("v1/auth")]
     [AllowAnonymous]
+    [KeyNotFoundExceptionFilter]
+    [UnauthorizedAccessExceptionFilter]
+    [GenericExceptionFilter]
     public class AuthController : Controller
     {
         private readonly IRepository<User> _userRepository;

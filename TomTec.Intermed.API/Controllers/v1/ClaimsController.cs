@@ -12,6 +12,9 @@ using TomTec.Intermed.Models;
 namespace TomTec.Intermed.API.Controllers.v1
 {
     [Authorization]
+    [KeyNotFoundExceptionFilter]
+    [UnauthorizedAccessExceptionFilter]
+    [GenericExceptionFilter]
     [Route("v1/claims")]
     public class ClaimsController : Controller
     {

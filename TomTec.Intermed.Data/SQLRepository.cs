@@ -34,33 +34,51 @@ namespace TomTec.Intermed.Data
 
         public T Get(int id)
         {
-            return (T)_dbContext.Set<T>().FirstOrDefault(e => e.Id == id);
+            var entities = _dbContext.Set<T>().FirstOrDefault(e => e.Id == id);
+            if (entities == null)
+                throw new KeyNotFoundException();
+            return entities;
         }
 
         public T Get(int id, params Expression<Func<T, object>>[] includes)
         {
-            return _dbContext.Set<T>().IncludeMultiple(includes).FirstOrDefault(e => e.Id == id);
+            var entities = _dbContext.Set<T>().IncludeMultiple(includes).FirstOrDefault(e => e.Id == id);
+            if (entities == null)
+                throw new KeyNotFoundException();
+            return entities;
         }
 
         public IEnumerable<T> Get()
         {
-            return (IEnumerable<T>)_dbContext.Set<T>();
+            var entities = (IEnumerable<T>)_dbContext.Set<T>();
+            if (entities == null)
+                throw new KeyNotFoundException();
+            return entities;
         }
 
         public IEnumerable<T> Get(params Expression<Func<T, object>>[] includes)
         {
-            return (IEnumerable<T>)_dbContext.Set<T>().IncludeMultiple(includes);
+            var entities = (IEnumerable<T>)_dbContext.Set<T>().IncludeMultiple(includes);
+            if (entities == null)
+                throw new KeyNotFoundException();
+            return entities;
         }
 
 
         public IEnumerable<T> Get(Func<T, bool> query)
         {
-            return (IEnumerable<T>)_dbContext.Set<T>().Where(query);
+            var entities = (IEnumerable<T>)_dbContext.Set<T>().Where(query);
+            if (entities == null)
+                throw new KeyNotFoundException();
+            return entities;
         }
 
         public IEnumerable<T> Get(Func<T, bool> query, params Expression<Func<T, object>>[] includes)
         {
-            return (IEnumerable<T>)_dbContext.Set<T>().IncludeMultiple(includes).Where(query);
+            var entities = (IEnumerable<T>)_dbContext.Set<T>().IncludeMultiple(includes).Where(query);
+            if (entities == null)
+                throw new KeyNotFoundException();
+            return entities;
         }
 
         public void Update(T entity)

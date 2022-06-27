@@ -12,69 +12,93 @@ namespace TomTec.Intermed.Data
     {
         public static IEnumerable<User> GetComplete(this IRepository<User> repository)
         {
-            return repository.DBContext.Users
+            var users = repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}");
+            if (users == null)
+                throw new KeyNotFoundException();
+            return users;
         }
 
         public static IEnumerable<User> GetComplete(this IRepository<User> repository, Func<User, bool> query)
         {
-            return repository.DBContext.Users
+            var users = repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}")
                 .Where(query);
+            if (users == null)
+                throw new KeyNotFoundException();
+            return users;
         }
 
         public static User GetCompleteUserByEmail(this IRepository<User> repository, string email)
         {
-            return repository.DBContext.Users
+            var users = repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}")
                 .FirstOrDefault(u => u.Email.Equals(email));
+            if (users == null)
+                throw new KeyNotFoundException();
+            return users;
         }
 
         public static User GetCompleteUserByUserName(this IRepository<User> repository, string userName)
         {
-            return repository.DBContext.Users
+            var users = repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}")
                 .FirstOrDefault(u => u.UserName.Equals(userName));
+            if (users == null)
+                throw new KeyNotFoundException();
+            return users;
         }
 
         public static User GetComplete(this IRepository<User> repository, int Id)
         {
-            return repository.DBContext.Users
+            var users = repository.DBContext.Users
                 .Include(nameof(User.Address))
                 .Include(nameof(User.UserType))
                 .Include($"{nameof(User.UsersClaims)}.{nameof(UsersClaims.Claim)}")
                 .FirstOrDefault(u => u.Id == Id);
+            if (users == null)
+                throw new KeyNotFoundException();
+            return users;
         }
 
         public static Claim GetComplete(this IRepository<Claim> repository, int Id)
         {
-            return repository.DBContext.Claims
+            var claims = repository.DBContext.Claims
                 .Include(nameof(Claim.UsersClaims))
                 .Include($"{nameof(Claim.UsersClaims)}.{nameof(UsersClaims.User)}")
                 .FirstOrDefault(ut => ut.Id == Id);
+            if (claims == null)
+                throw new KeyNotFoundException();
+            return claims;
         }
 
         public static IEnumerable<Claim> GetComplete(this IRepository<Claim> repository, Func<Claim, bool> query)
         {
-            return repository.DBContext.Claims
+            var claims = repository.DBContext.Claims
                 .Include(nameof(Claim.UsersClaims))
                 .Include($"{nameof(Claim.UsersClaims)}.{nameof(UsersClaims.User)}")
                 .Where(query);
+             if (claims == null)
+                throw new KeyNotFoundException();
+            return claims;
         }
 
         public static IEnumerable<Claim> GetComplete(this IRepository<Claim> repository)
         {
-            return repository.DBContext.Claims
+            var claims = repository.DBContext.Claims
                 .Include(nameof(Claim.UsersClaims))
                 .Include($"{nameof(Claim.UsersClaims)}.{nameof(UsersClaims.User)}");
+            if (claims == null)
+                throw new KeyNotFoundException();
+            return claims;
         }
 
         public static void SignUserToClaim(this IRepository<Claim> repository, int userId, int claimId)
