@@ -44,94 +44,59 @@ namespace TomTec.Intermed.API.Controllers.v1
         [HttpGet("")]
         public IActionResult GetUsers()
         {
-            try
+            var users = _userRepository.GetComplete();
+            return Ok(new
             {
-                var users = _userRepository.GetComplete();
-                return Ok(new
-                {
-                    message = ResponseMessage.Success,
-                    value = new UserListRecord(users)
-                });
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+                message = ResponseMessage.Success,
+                value = new UserListRecord(users)
+            });
         }
 
         [Authorization]
         [HttpGet("{id}")]
         public IActionResult GetUser(int id)
         {
-            try
+            var user = _userRepository.GetComplete(id);
+            return Ok(new
             {
-                var user = _userRepository.GetComplete(id);
-                return Ok(new
-                {
-                    message = ResponseMessage.Success,
-                    value = user
-                });
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+                message = ResponseMessage.Success,
+                value = user
+            });
         }
 
         [Authorization]
         [HttpGet("username/{userName}")]
         public IActionResult GetUserByUserName(string userName)
         {
-            try
+            var user = _userRepository.GetCompleteUserByUserName(userName);
+            return Ok(new
             {
-                var user = _userRepository.GetCompleteUserByUserName(userName);
-                return Ok(new
-                {
-                    message = ResponseMessage.Success,
-                    value = user
-                });
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+                message = ResponseMessage.Success,
+                value = user
+            });
         }
 
         [Authorization]
         [HttpGet("email/{email}")]
         public IActionResult GetUserByEmail(string email)
         {
-            try
+            var user = _userRepository.GetCompleteUserByEmail(email);
+            return Ok(new
             {
-                var user = _userRepository.GetCompleteUserByEmail(email);
-                return Ok(new
-                {
-                    message = ResponseMessage.Success,
-                    value = user
-                });
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+                message = ResponseMessage.Success,
+                value = user
+            });
         }
 
         [Authorization]
         [HttpDelete("{id}")]
         public IActionResult CancellUser(int id)
         {
-            try
+            _userRepository.Cancell(id);
+            return Ok(new
             {
-                _userRepository.Cancell(id);
-                return Ok(new
-                {
-                    message = ResponseMessage.Success,
-                });
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+                message = ResponseMessage.Success,
+            });
         }
 
         [HttpPut("{id}")]
