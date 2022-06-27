@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ using TomTec.Intermed.Models;
 namespace TomTec.Intermed.API.Controllers.v1
 {
     [Authorization]
-    [KeyNotFoundExceptionFilter]
-    [UnauthorizedAccessExceptionFilter]
-    [GenericExceptionFilter]
+    [ServiceFilter(typeof(KeyNotFoundExceptionFilterAttribute))]
+    [ServiceFilter(typeof(UnauthorizedAccessExceptionFilterAttribute))]
+    [ServiceFilter(typeof(GenericExceptionFilterAttribute))]
     [Route("v1/addresses")]
     public class AddressesController : Controller
     {

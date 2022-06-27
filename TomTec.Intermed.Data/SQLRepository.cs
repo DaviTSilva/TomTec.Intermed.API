@@ -36,7 +36,7 @@ namespace TomTec.Intermed.Data
         {
             var entities = _dbContext.Set<T>().FirstOrDefault(e => e.Id == id);
             if (entities == null)
-                throw new KeyNotFoundException();
+                throw new KeyNotFoundException($"the given id '{id}' of entity type '{typeof(T)}' was not found");
             return entities;
         }
 
@@ -44,7 +44,7 @@ namespace TomTec.Intermed.Data
         {
             var entities = _dbContext.Set<T>().IncludeMultiple(includes).FirstOrDefault(e => e.Id == id);
             if (entities == null)
-                throw new KeyNotFoundException();
+                throw new KeyNotFoundException($"the given id '{id}' of entity type '{typeof(T)}' was not found");
             return entities;
         }
 
@@ -52,7 +52,7 @@ namespace TomTec.Intermed.Data
         {
             var entities = (IEnumerable<T>)_dbContext.Set<T>();
             if (entities == null)
-                throw new KeyNotFoundException();
+                throw new KeyNotFoundException($"found no matches for a list of entity type '{typeof(T)}'");
             return entities;
         }
 
@@ -60,7 +60,7 @@ namespace TomTec.Intermed.Data
         {
             var entities = (IEnumerable<T>)_dbContext.Set<T>().IncludeMultiple(includes);
             if (entities == null)
-                throw new KeyNotFoundException();
+                throw new KeyNotFoundException($"found no matches for a list of entity type '{typeof(T)}'");
             return entities;
         }
 
@@ -69,7 +69,7 @@ namespace TomTec.Intermed.Data
         {
             var entities = (IEnumerable<T>)_dbContext.Set<T>().Where(query);
             if (entities == null)
-                throw new KeyNotFoundException();
+                throw new KeyNotFoundException($"found no matches for a list of entity type '{typeof(T)}' with parameters");
             return entities;
         }
 
@@ -77,7 +77,7 @@ namespace TomTec.Intermed.Data
         {
             var entities = (IEnumerable<T>)_dbContext.Set<T>().IncludeMultiple(includes).Where(query);
             if (entities == null)
-                throw new KeyNotFoundException();
+                throw new KeyNotFoundException($"found no matches for a list of entity type '{typeof(T)}' with parameters");
             return entities;
         }
 

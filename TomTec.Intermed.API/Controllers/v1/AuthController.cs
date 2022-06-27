@@ -16,9 +16,9 @@ namespace TomTec.Intermed.API.Controllers.v1
 {
     [Route("v1/auth")]
     [AllowAnonymous]
-    [KeyNotFoundExceptionFilter]
-    [UnauthorizedAccessExceptionFilter]
-    [GenericExceptionFilter]
+    [ServiceFilter(typeof(KeyNotFoundExceptionFilterAttribute))]
+    [ServiceFilter(typeof(UnauthorizedAccessExceptionFilterAttribute))]
+    [ServiceFilter(typeof(GenericExceptionFilterAttribute))]
     public class AuthController : Controller
     {
         private readonly IRepository<User> _userRepository;

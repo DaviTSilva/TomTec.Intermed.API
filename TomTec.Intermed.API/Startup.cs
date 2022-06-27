@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TomTec.Intermed.Business;
 using TomTec.Intermed.Data;
+using TomTec.Intermed.Lib.AspNetCore;
+using TomTec.Intermed.Lib.AspNetCore.Filters;
 
 namespace TomTec.Intermed.API
 {
@@ -39,11 +41,18 @@ namespace TomTec.Intermed.API
             services.AddScoped(typeof(IRepository<>), typeof(SQLRepository<>));
             services.AddScoped(typeof(ICreditCardInfoService), typeof(CreditCardInfoService));
             services.AddScoped(typeof(ISignatureService), typeof(SignatureService));
+
+            //Exceptions Handlings
+            services.AddScoped<KeyNotFoundExceptionFilterAttribute>();
+            services.AddScoped<UnauthorizedAccessExceptionFilterAttribute>();
+            services.AddScoped<GenericExceptionFilterAttribute>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddFile($"D:\\Intermed\\Logs\\log-intermed-api_{DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss")}"); 
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

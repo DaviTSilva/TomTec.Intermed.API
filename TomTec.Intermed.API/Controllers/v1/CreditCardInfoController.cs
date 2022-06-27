@@ -14,9 +14,9 @@ using TomTec.Intermed.Models;
 namespace TomTec.Intermed.API.Controllers.v1
 {
     [Authorization]
-    [KeyNotFoundExceptionFilter]
-    [UnauthorizedAccessExceptionFilter]
-    [GenericExceptionFilter]
+    [ServiceFilter(typeof(KeyNotFoundExceptionFilterAttribute))]
+    [ServiceFilter(typeof(UnauthorizedAccessExceptionFilterAttribute))]
+    [ServiceFilter(typeof(GenericExceptionFilterAttribute))]
     [Route("v1/credit-card-infos")]
     public class CreditCardInfoController : Controller
     {
@@ -92,7 +92,7 @@ namespace TomTec.Intermed.API.Controllers.v1
             var userId = _healthProInfoRepository.Get(h => h.CreditCardInfoId == creditCardInfoId).FirstOrDefault().UserId;
             if(userId != currentUserId)
             {
-                throw new UnauthorizedAccessException();
+                throw new UnauthorizedAccessException($"User with Id '{currentUserId}' tried to access credit card information which belongs to user {userId}");
             }
         }
     }

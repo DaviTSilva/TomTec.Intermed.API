@@ -14,9 +14,9 @@ using TomTec.Intermed.Models;
 namespace TomTec.Intermed.API.Controllers.v1
 {
     [Route("v1/profiles")]
-    [KeyNotFoundExceptionFilter]
-    [UnauthorizedAccessExceptionFilter]
-    [GenericExceptionFilter]
+    [ServiceFilter(typeof(KeyNotFoundExceptionFilterAttribute))]
+    [ServiceFilter(typeof(UnauthorizedAccessExceptionFilterAttribute))]
+    [ServiceFilter(typeof(GenericExceptionFilterAttribute))]
     public class ProfilesController : Controller
     {
         private readonly IRepository<User> _userRepository;
