@@ -45,7 +45,7 @@ namespace TomTec.Intermed.Business
 
         #endregion
 
-        public Signature GenerateFreeTrial(int healthProfessionalId, int signatureTypeId)
+        public Signature GenerateFreeTrial(int healthProfessionalId, int signatureTypeId, bool isYearlyPack)
         {
             var startingDate = CalculateStartingDate(healthProfessionalId);
             var expire = startingDate.AddMonths(AVALIATION_MONTHS).AddDays(1);
@@ -56,7 +56,7 @@ namespace TomTec.Intermed.Business
                 IsPayed = true,
                 IsFreeTrial = true,
                 IsCancelled = false,
-                IsYearlyPack = false,
+                IsYearlyPack = isYearlyPack,
                 Value = 0d,
                 SignatureTypeId = signatureTypeId,
             };

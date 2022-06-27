@@ -113,6 +113,24 @@ namespace TomTec.Intermed.API.Controllers.v1
             }
         }
 
+        [Authorization]
+        [HttpDelete("{id}")]
+        public IActionResult CancellUser(int id)
+        {
+            try
+            {
+                _userRepository.Cancell(id);
+                return Ok(new
+                {
+                    message = ResponseMessage.Success,
+                });
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized();
+            }
+        }
+
         [HttpPut("{id}")]
         public IActionResult UpdateUser([FromBody] UpdateProfileDto dto, int id)
         {

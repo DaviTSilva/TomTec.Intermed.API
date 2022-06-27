@@ -41,7 +41,7 @@ namespace TomTec.Intermed.API.Controllers.v1
             });
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public IActionResult GetCreditCardInfo(int id)
         {
             var creditCardInfo = _creditCardInfoRepository.Get(id);
@@ -66,7 +66,7 @@ namespace TomTec.Intermed.API.Controllers.v1
             });
         }
 
-        [HttpGet("id/decrypted")]
+        [HttpGet("{id}/decrypted")]
         public IActionResult GetCreditCardInfoDecrypt(int id)
         {
             var creditCardInfo = _creditCardInfoRepository.Get(id);

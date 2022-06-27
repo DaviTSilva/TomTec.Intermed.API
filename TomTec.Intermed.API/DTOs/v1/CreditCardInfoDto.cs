@@ -23,6 +23,7 @@ namespace TomTec.Intermed.API.DTOs.v1
                 Expire = this.Expire,
                 OwnerName = this.OwnerName,
                 CVV = this.CVV,
+                FourLastNumbers = this.Number.Substring(this.Number.Length - 4),
             };
         }
     }

@@ -7,7 +7,7 @@ namespace TomTec.Intermed.Business
 {
     public interface ISignatureService
     {
-        Signature GenerateFreeTrial(int HealthProfessionalId, int signatureTypeId);
+        Signature GenerateFreeTrial(int HealthProfessionalId, int signatureTypeId, bool isYearlyPack);
         Signature Generate(int healthProfessionalId, int signatureTypeId, bool isYearlyPack);
         Signature Renew(int healthProfessionalId);
     }

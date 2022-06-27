@@ -19,9 +19,10 @@ namespace TomTec.Intermed.API.Controllers.v1
         private IRepository<Signature> _signatureRepository;
         private ISignatureService _signatureService;
 
-        public SignatureController(IRepository<Signature> signatureRepository)
+        public SignatureController(IRepository<Signature> signatureRepository, ISignatureService signatureService)
         {
             _signatureRepository = signatureRepository;
+            _signatureService = signatureService;
         }
 
         [HttpPost("")]
@@ -39,9 +40,9 @@ namespace TomTec.Intermed.API.Controllers.v1
         }
 
         [HttpPost("free-trial")]
-        public IActionResult CreateFreeTrialSignature([FromBody] SignatureFreeTrialDto dto)
+        public IActionResult CreateFreeTrialSignature([FromBody] SignatureDto dto)
         {
-            var model = _signatureRepository.Create(_signatureService.GenerateFreeTrial(dto.HealthProfessionalId, dto.SignatureTypeId));
+            var model = _signatureRepository.Create(_signatureService.GenerateFreeTrial(dto.HealthProfessionalId, dto.SignatureTypeId, dto.isYearlyPack));
             return Created(ResponseMessage.Success, model);
         }
 

@@ -104,6 +104,20 @@ namespace TomTec.Intermed.Data
             repository.DBContext.SaveChanges();
         }
 
+        public static void Cancell(this IRepository<User> repository, int id)
+        {
+            var user
+                = new User()
+            {
+                Id = id,
+                Active = false
+            };
+
+            repository.DBContext.Users.Attach(user);
+            repository.DBContext.Entry(user).Property(x => x.Active).IsModified = true;
+            repository.DBContext.SaveChanges();
+        }
+
         public static IQueryable<T> IncludeMultiple<T>(this IQueryable<T> query, params Expression<Func<T, object>>[] includes)
             where T : class
         {

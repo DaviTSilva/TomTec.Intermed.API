@@ -80,7 +80,7 @@ namespace TomTec.Intermed.API.Controllers.v1
             });
         }
 
-        [HttpPost("sign/{id}")]
+        [HttpPost("{id}/sign")]
         public IActionResult SignClaim([FromBody] SigningClaimDto dto, int id)
         {
             _claimsRepository.SignUserToClaim(dto.UserId, id);
@@ -89,7 +89,7 @@ namespace TomTec.Intermed.API.Controllers.v1
             });
         }
 
-        [HttpPost("unsign/{id}")]
+        [HttpPost("{id}/unsign")]
         public IActionResult UnsignClaim([FromBody] SigningClaimDto dto, int id)
         {
             _claimsRepository.UnsignUserToClaim(dto.UserId, id);

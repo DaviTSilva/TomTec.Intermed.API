@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using TomTec.Intermed.API.DTOs.v1;
 using TomTec.Intermed.Data;
 using TomTec.Intermed.Lib.AspNetCore;
+using TomTec.Intermed.Lib.AspNetCore.Filters;
 using TomTec.Intermed.Models;
 
 namespace TomTec.Intermed.API.Controllers.v1
 {
+    [Authorization]
     [Route("v1/contact-cards")]
     public class ContactCardController : Controller
     {
